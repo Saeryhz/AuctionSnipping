@@ -65,6 +65,44 @@ searchBugattiVeryon(){
   menuNavBack(2) ; Back to auction main menu
 }
 
+searchBMWM6FE(){
+  ; TODO : Remove WinActivate and use ControlSend / pid
+  WinActivate, ahk_exe ApplicationFrameHost.exe
+  WinWaitActive, ahk_exe ApplicationFrameHost.exe
+  updateToolTip("Searching BMW M6'13 FE for 200.000 CR")
+
+  ;menuNavLeft(1) ; Select "Search Cars"
+  menuNavEnter(1) ; Enter "Search Cars"
+  menuNavUp(7) ; Go to "Make"
+  ; ----------------------------------------
+  menuNavRight(17) ; Select "BMW"
+  ; ----------------------------------------
+  menuNavDown(1) ; Go to "Model"
+  ; ----------------------------------------
+  menuNavLeft(7) ; Select "M6'13 FE"
+  ; ----------------------------------------
+  menuNavDown(4) ; Go to "Max Buyout"
+  ; ----------------------------------------
+  menuNavRight(22) ; Set to 200.000 CR
+  ; ----------------------------------------
+
+  menuNavDown(1) ; Select "Confirm"
+  menuNavEnter(1) ; Confirm
+
+  Sleep 3000 ; Wait 5 seconds until results
+
+  menuAuctionOptions() ; Auction options
+  menuNavDown(1) ; Select "Buy Out"
+  menuNavEnter(1) ; Buy out
+  Sleep 500 ; Wait confirmation window
+
+  menuNavEnter(1) ; Confirm buy out
+  Sleep 5000 ; Wait for potential purchase
+
+  menuNavEnter(1) ; Confirm error, if successful it will stuck at the success window
+  menuNavBack(2) ; Back to auction main menu
+}
+
 ; Using != instead of >= to improve "Send" reliability
 menuNavUp(i){
   while(i!=0){
